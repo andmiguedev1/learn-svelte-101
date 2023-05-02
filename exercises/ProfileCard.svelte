@@ -1,48 +1,38 @@
 <script>
+  export let name, picture;
+
   let counter = 0;
   let message = "Clicked ";
-  let customer = "Maria Gonzales";
-  let profilePic = "https://randomuser.me/api/portraits/women/25.jpg";
 
   function trackClicks() {
     counter += 1;
   }
+
+  function displayCount(message, counter) {
+    if (counter === 1) {
+      return `${message} ${counter} time`;
+    } else if (counter > 1) {
+      return `${message} ${counter} times`;
+    }
+  }
 </script>
 
-<section class="profile-area">
-  <div class="profile-card">
-    <div class="content">
-      <div class="profile-image">
-        <img src={profilePic} alt={customer} />
-      </div>
-      <div class="profile-info">
-        <h2>{customer}</h2>
-        <span>Digital Marketing</span>
-      </div>
-      <button on:click={trackClicks} class="toggle-btn">
-        {counter === 0 ? "More Info" : message + counter + " times"}
-      </button>
+<article class="profile-card">
+  <div class="content">
+    <div class="profile-image">
+      <img src={picture} alt={name} />
     </div>
+    <div class="profile-info">
+      <h2>{name}</h2>
+      <span>Digital Marketing</span>
+    </div>
+    <button on:click={trackClicks} class="toggle-btn">
+      {counter > 0 ? displayCount(message, counter) : "More Info"}
+    </button>
   </div>
-</section>
+</article>
 
 <style>
-  @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", Arial, sans-serif;
-  }
-
-  .profile-area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f1f1f1;
-  }
   .profile-card {
     height: 100px;
     transition: 0.5s;
@@ -111,7 +101,4 @@
   .profile-card .toggle-btn:hover {
     color: #000;
   }
-  /* .profile-card .toggle-btn::before {
-    content: "More Info";
-  } */
 </style>
