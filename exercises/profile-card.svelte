@@ -1,6 +1,12 @@
 <script>
+  let counter = 0;
+  let message = "Clicked ";
   let customer = "Maria Gonzales";
   let profilePic = "https://randomuser.me/api/portraits/women/25.jpg";
+
+  function trackClicks() {
+    counter += 1;
+  }
 </script>
 
 <section class="profile-area">
@@ -11,10 +17,11 @@
       </div>
       <div class="profile-info">
         <h2>{customer}</h2>
-        <br />
         <span>Digital Marketing</span>
       </div>
-      <span class="toggle-btn" />
+      <button on:click={trackClicks} class="toggle-btn">
+        {counter === 0 ? "More Info" : message + counter + " times"}
+      </button>
     </div>
   </div>
 </section>
@@ -89,7 +96,7 @@
   .profile-card .toggle-btn {
     position: absolute;
     bottom: 0;
-    width: 120px;
+    min-width: 120px;
     padding: 5px 15px;
     font-size: 0.8em;
     text-align: center;
@@ -101,7 +108,10 @@
     transition: all 0.5s ease-out;
     cursor: pointer;
   }
-  .profile-card .toggle-btn::before {
-    content: "More Info";
+  .profile-card .toggle-btn:hover {
+    color: #000;
   }
+  /* .profile-card .toggle-btn::before {
+    content: "More Info";
+  } */
 </style>
