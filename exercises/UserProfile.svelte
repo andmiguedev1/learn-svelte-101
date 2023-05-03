@@ -1,12 +1,17 @@
 <script>
   import ProfileCard from "./ProfileCard.svelte";
 
-  let sampleName = "Jessica";
-  let samplePic = "https://randomuser.me/api/portraits/women/25.jpg";
+  const customer = {
+    name: "Jessica Gonzales",
+    age: 26,
+    profilePic: "https://randomuser.me/api/portraits/women/25.jpg",
+    job: "Digital Marketing",
+    favoriteFood: "Chicken Picatta",
+  };
 </script>
 
 <section class="user-profile">
-  <ProfileCard name={sampleName} picture={samplePic} />
+  <ProfileCard name={customer.name} picture={customer.profilePic} />
 </section>
 
 <style>

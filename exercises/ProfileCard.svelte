@@ -1,19 +1,12 @@
 <script>
   export let name, picture;
 
-  let counter = 0;
-  let message = "Clicked ";
+  let profile = {
+    onClick: false,
+  };
 
-  function trackClicks() {
-    counter += 1;
-  }
-
-  function displayCount(message, counter) {
-    if (counter === 1) {
-      return `${message} ${counter} time`;
-    } else if (counter > 1) {
-      return `${message} ${counter} times`;
-    }
+  function toggleBtn() {
+    profile.onClick = !profile.onClick;
   }
 </script>
 
@@ -26,10 +19,31 @@
       <h2>{name}</h2>
       <span>Digital Marketing</span>
     </div>
-    <button on:click={trackClicks} class="toggle-btn">
-      {counter > 0 ? displayCount(message, counter) : "More Info"}
-    </button>
+    {#if profile.onClick}
+      <button on:click={toggleBtn} class="toggle-btn"> More Info </button>
+    {/if}
+    {#if !profile.onClick}
+      <button on:click={toggleBtn} class="toggle-btn"> Close </button>
+    {/if}
   </div>
+  {#if !profile.onClick}
+    <div class="profile-details">
+      <div class="profile-data">
+        <div class="icon-box">
+          <i class="bi bi-calendar" />
+          <p>May, 2, 2023</p>
+          <h5>Joined On</h5>
+        </div>
+      </div>
+      <div class="profile-data">
+        <div class="icon-box">
+          <i class="bi bi-calendar" />
+          <p>May, 2, 2023</p>
+          <h5>Last login</h5>
+        </div>
+      </div>
+    </div>
+  {/if}
 </article>
 
 <style>
@@ -100,5 +114,28 @@
   }
   .profile-card .toggle-btn:hover {
     color: #000;
+  }
+  .profile-details {
+    display: flex;
+    flex-direction: row;
+    flex-flow: nowrap;
+    background-color: #fff;
+    padding: 0 15px;
+    max-width: 500px;
+  }
+  .profile-details .profile-data {
+    align-items: center;
+    justify-content: space-between;
+    flex-basis: 50%;
+    margin: 0 10%;
+  }
+  .profile-details .profile-data p {
+    font-size: 0.95em;
+    font-weight: 500;
+  }
+  .profile-details .profile-data h5 {
+    font-size: 0.65em;
+    font-weight: 700;
+    color: orange;
   }
 </style>
